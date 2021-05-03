@@ -1,0 +1,22 @@
+{
+  "name": "backend-fastfeet",
+  "version": "1.0.0",
+  "main": "./src/server.js",
+  "license": "MIT",
+  "scripts": {
+    "server": "nodemon"
+  },
+  "dependencies": {
+    "awilix": "^4.3.4",
+    "bcryptjs": "^2.4.3",
+    "express": "^4.17.1",
+    "pg": "^8.6.0",
+    "pg-hstore": "^2.3.3",
+    "sequelize": "^6.6.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7",
+    "sequelize-cli": "^6.2.0",
+    "sucrase": "^3.18.1"
+  }
+}

@@ -1,0 +1,35 @@
+version: "3"
+
+services: 
+  api:
+    container_name: api-fastfeet
+    build: .
+    command: yarn server
+    ports: 
+      - 9000:9000
+    volumes: 
+      - .:/usr/app/
+    depends_on:
+      - database
+    networks: 
+      - app-network
+  database:
+    container_name: database-fastfeet
+    image: postgres
+    restart: always
+    environment: 
+      POSTGRES_DB: fastfeet
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin-fastfeet
+    ports: 
+      - 5433:5433
+    volumes: 
+      - ./database/:/var/lib/postgres/data
+    networks: 
+      - app-network
+
+
+
+networks: 
+  app-network:
+    driver: bridge
