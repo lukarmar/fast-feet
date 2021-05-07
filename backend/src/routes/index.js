@@ -1,16 +1,9 @@
-import userRoutes from './user.router'
+const { Router } = require('express');
 
-const collectionRouter = [{
-  key: "/user",
-  router: userRoutes
-}]
+const userRoutes = require('./user.router');
 
-export default router => {
-  
-  collectionRouter.forEach((routerItem) => {
-    router.use(routerItem.key, routerItem.router(router))
-  })
+const routers = Router();
 
-    
-  return router;
-}
+routers.use('/user', userRoutes);
+
+module.exports = routers;

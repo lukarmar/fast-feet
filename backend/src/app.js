@@ -1,26 +1,22 @@
-import express, { Router } from 'express';
-import executeRoutes from './routes' 
+const express = require('express');
+const routes = require('./routes');
+
+require('./database');
 
 class Application {
-  constructor(){
-    this.server = express()
-    this.router = Router()
-    
+  constructor() {
+    this.app = express();
+
     this.applyRouter();
-
   }
 
-  applyRouter(){
-    const generationRoutes = executeRoutes(this.router);
-            
-    this.server.use(generationRoutes)
-    
+  applyRouter() {
+    this.app.use(routes);
   }
 
-  middlewares(){
-    this.server.use(express.json)
+  middlewares() {
+    this.app.use(express.json);
   }
-
 }
 
-export default Application;
+module.exports = Application;

@@ -1,35 +1,38 @@
 version: "3"
 
-services: 
+services:
   api:
     container_name: api-fastfeet
     build: .
     command: yarn server
-    ports: 
+    ports:
       - 9000:9000
-    volumes: 
+    volumes:
       - .:/usr/app/
     depends_on:
       - database
-    networks: 
+    networks:
       - app-network
   database:
-    container_name: database-fastfeet
-    image: postgres
+    image: mysql:5.7
+    command:
+      - --default-authentication-plugin=mysql_native_password
+      - --innodb-use-native-aio=0
     restart: always
-    environment: 
-      POSTGRES_DB: fastfeet
-      POSTGRES_USER: admin
-      POSTGRES_PASSWORD: admin-fastfeet
-    ports: 
-      - 5433:5433
-    volumes: 
-      - ./database/:/var/lib/postgres/data
-    networks: 
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=fastfeet
+      - MYSQL_USER=admin
+      - MYSQL_PASSWORD=admin-fastfeet
+    ports:
+      - 3306:3306
+    volumes:
+      - ./database/:/var/lib/mysql
+    networks:
       - app-network
 
 
 
-networks: 
+networks:
   app-network:
     driver: bridge

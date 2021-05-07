@@ -1,8 +1,7 @@
-import Application from './app' 
+const Application = require('./app');
 
-const application = new Application()
+const application = new Application();
 
-
-application.server.listen(9000, () => {
-  console.log("Server run in port 9000")
-})
+application.app.listen(9000, () => {
+  console.log('Server run in port 9000');
+});

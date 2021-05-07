@@ -1,30 +1,9 @@
-// class UserRoutes {
-//   constructor({ userRouter }) {
-//     this.userRouter = userRouter
-            
-//   }
-  
-//   regiterRoutes(){
+const { Router } = require("express");
 
-//     const userRouter = this.userRouter
-  
-//     this.userRouter.get("/", (request, response) => {
-//       console.log("AAAAA")
-//       response.send("ACABAMOS DE CRER QUE TUDO É POSSÍVEL COM VONTADE E QUERER" )
-//     })
+const userRouter = Router();
 
-//     return userRouter;
-//   }
-  
-// }
+userRouter.get("/", (request, response) => {
+  response.json({ message: "Teste de aplicação serveless" });
+});
 
-// export default UserRoutes;
-
-export default userRouter => {
-
-  userRouter.get("/", (request, response) => {
-    return response.json({message: "ACABAMOS DE CRER QUE TUDO É POSSÍVEL COM VONTADE E QUERER" })
-  })
-
-  return userRouter;
-}
+module.exports = userRouter;
